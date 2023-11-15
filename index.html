@@ -1,0 +1,45 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Magic 8 Ball</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Roboto+Slab:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div id="container">
+      <header class="main-header">
+        <h1 id="header">Magic<span>&nbsp;8&nbsp;</span> Ball</h1>
+      </header>
+      <main id="main-content">
+        <section id="ball" draggable="true" onmouseup="answerQuestion">
+          <div id="outer">
+            <div id="inner">
+              <div id="response">
+                <div class="center">8</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer id="main-footer">
+        <section id="main-button">
+          <button id="button">ASK ME ANYTHING</button>
+          <h2>... or give me a good shake!</h2>
+        </section>
+      </footer>
+    </div>
+  </body>
+</html>
