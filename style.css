@@ -1,15 +1,22 @@
+:root {
+  --white: #FFF;
+  --blue: rgb(93, 93, 255);
+  --gray: #f4f4f4;
+  --red: #F66;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Courier New', Courier, monospace;
   font-family: 'Roboto Slab', serif;
   font-family: 'Lato', sans-serif;
-  background-color: #f4f4f4;
+  background-color: var(--gray);
   touch-action: manipulation;
 }
 
 span {
-  color: #F66;
+  color: var(--red);
 }
 
 button {
@@ -19,7 +26,7 @@ button {
   border-radius: 7px;
   font-size: 20px;
   color: white;
-  background-color: #F66;
+  background-color: var(--red);
 }
 
 #container {
@@ -43,25 +50,28 @@ button {
 }
 
 #outer {
+  cursor: grab;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 300px;
   width: 300px;
   border-radius: 150px;
-  border: solid black .5px;
   background-color: black;
   background: linear-gradient(130deg, rgb(0, 0, 0), rgb(51, 46, 46), rgb(59, 64, 59));
+  overflow: hidden;
 }
 
 #inner {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 75px;
+  background-color: var(--white);
   height: 150px;
   width: 150px;
-  border-radius: 75px;
-  background-color: white;
+  font-size: 100px;
+  font-weight: 900;
 }
 
 #main-button {
@@ -72,14 +82,58 @@ button {
 }
 
 #button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 24px;
 }
 
-.center {
-  font-size: 100px;
-  font-weight: 900;
+.begin-animation {
+  animation: mymove 1s 1;
+  animation-timing-function: linear;
+  position: relative;
+}
+
+@keyframes mymove {
+  from {right: 0;}
+  to {right: 2em;}
+  from {top: 0;}
+  to {top: 2em;}
+}
+
+.end-animation {
+  animation: mymove2 1s 1;
+  animation-timing-function: linear;
+  position: relative
+}
+
+@keyframes mymove2 {
+  from {left: 2em;}
+  to {left: 0;}
+  from {bottom: 2em;}
+  to {bottom: 0;}
+}
+  
+.blinker {
+  animation: blinker 2s linear infinite;
+  box-shadow:
+    0 0 1em .5em #FFF,
+    0 0 1.5em 1em #F0F,
+    0 0 2em 1.5em #0ff;
+}
+  
+@keyframes blinker {
+  25% {
+    opacity: 0;
+  }
 }
 
 .center-answer {
   font-size: 12px;
+}
+
+@media only screen and (hover:none) and (pointer:coarse) {
+  h2 {
+    display: none;
+  }
 }
