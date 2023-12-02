@@ -87,6 +87,12 @@ button {
   font-size: 24px;
 }
 
+#bottom-note{
+  margin-top: 3rem;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}
+
 .begin-rotate {
   animation: rotate-to-bottom 1s 1;
   animation-timing-function: linear;
@@ -181,7 +187,7 @@ button {
 }
 
 @media only screen and (hover:none) and (pointer:coarse) {
-  h2 {
+  #bottom-note {
     display: none;
   }
 }
