@@ -1,10 +1,95 @@
 /**
- * Generates a random response.
+ * Runs the first time the user interacts with the UI.
  *
  * @format
+ */
+
+function firstShake() {
+  document.querySelector("#ball").removeEventListener("dragend", firstShake);
+  document.querySelector("#button").removeEventListener("click", firstShake);
+
+  shakeBall();
+  rotateBall();
+  runProgram();
+}
+
+/**
+ * Animation that shakes the ball side-to-side.
+ */
+function shakeBall() {
+  const outer = document.querySelector("#outer");
+  outer.classList.add("shake-ball");
+
+  setTimeout(() => {
+    outer.classList.remove("shake-ball");
+  }, 1000);
+}
+
+/**
+ * Displays the content from Magic 8 Ball's sophisticated response algorithm.
+ */
+function rotateBall() {
+  inner.classList.add("begin-rotate");
+
+  setTimeout(() => {
+    inner.classList.remove("begin-rotate");
+    inner.classList.remove("solid");
+    inner.classList.add("liquid");
+    inner.classList.add("end-rotate");
+  }, 1000);
+
+  setTimeout(() => {
+    inner.classList.remove("end-rotate");
+  }, 2000);
+}
+
+/**
+ * Toggles the displayButton class to change the UI for the button.
+ */
+function displayButton() {
+  const button = document.querySelector("#button");
+  button.style.visibility = "hidden";
+  const header = document.querySelector("h2");
+  header.style.visibility = "hidden";
+
+  setTimeout(() => {
+    button.style.visibility = "visible";
+    header.style.visibility = "visible";
+  }, 3000);
+}
+
+/**
+ * Fades the response out and in.
+ */
+function fade() {
+  const center = document.querySelector(".center");
+  center.classList.toggle("fade");
+  setTimeout(() => {
+    center.classList.toggle("fade");
+  }, 3000);
+}
+
+/**
+ * Toggles event listeners to prevent premature ball activation.
+ */
+function toggleListeners() {
+  const ball = document.querySelector("#ball");
+  const button = document.querySelector("#button");
+  ball.removeEventListener("dragend", runProgram);
+  button.removeEventListener("click", runProgram);
+
+  setTimeout(() => {
+    ball.addEventListener("dragend", runProgram);
+    button.addEventListener("click", runProgram);
+  }, 2000);
+}
+
+/**
+ * Generates a random response.
+ *
  * @returns {string} - Returns a string of an answer to a question.
  */
-function retrieveAnswer() {
+function retrieveResponse() {
   const responses = [
     "YES",
     "NO",
@@ -23,55 +108,38 @@ function retrieveAnswer() {
 }
 
 /**
- * Displays the content from Magic 8 Ball's sophisticated response algorithm.
+ * Creates the UI for Magic 8 Ball's response.
  */
-function rotateBall() {
-  document.querySelector("#ball").removeEventListener("dragend", rotateBall);
-  document.querySelector("#button").removeEventListener("click", rotateBall);
+function displayResponse() {
+  const center = document.querySelector(".center");
+  center.innerHTML = "";
+  center.classList.add("response");
 
-  document.querySelector("#ball").addEventListener("dragend", displayAnswer);
-  document.querySelector("#button").addEventListener("click", displayAnswer);
-
-  inner.classList.add("begin-animation");
-
-  setTimeout(function () {
-    inner.style.backgroundColor = "rgb(93, 93, 255)";
-    inner.classList.add("end-animation");
-  }, 1000);
-  displayAnswer();
+  const answer = retrieveResponse();
+  const text = document.createTextNode(answer);
+  center.appendChild(text);
 }
 
 /**
  * Displays the result of user's query in the UI.
  */
-function displayAnswer() {
-  checkUI();
-  setTimeout(function () {
-    const answer = retrieveAnswer();
-    const text = document.createTextNode(answer);
-    const center = document.querySelector(".center");
-    center.innerHTML = "";
-    center.classList.add("center-answer");
-    center.appendChild(text);
-  }, 1000);
-}
+function runProgram() {
+  displayButton();
+  shakeBall();
+  fade();
 
-/**
- * Toggles the blinker class to change the UI for the button.
- */
-function checkUI() {
-  document.querySelector("#button").classList.toggle("blinker");
-  setTimeout(function () {
-    document.querySelector("#button").classList.toggle("blinker");
-  }, 2500);
+  setTimeout(() => {
+    displayResponse();
+    toggleListeners();
+  }, 1000);
 }
 
 /**
  * Starts the app and adds event listeners.
  */
 function startApp() {
-  document.querySelector("#ball").addEventListener("dragend", rotateBall);
-  document.querySelector("#button").addEventListener("click", rotateBall);
+  document.querySelector("#ball").addEventListener("dragend", firstShake);
+  document.querySelector("#button").addEventListener("click", firstShake);
 }
 
 startApp();
