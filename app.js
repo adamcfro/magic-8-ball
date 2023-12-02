@@ -3,7 +3,6 @@
  *
  * @format
  */
-
 function firstShake() {
   document.querySelector("#ball").removeEventListener("dragend", firstShake);
   document.querySelector("#button").removeEventListener("click", firstShake);
@@ -49,12 +48,12 @@ function rotateBall() {
 function displayButton() {
   const button = document.querySelector("#button");
   button.style.visibility = "hidden";
-  const header = document.querySelector("h2");
-  header.style.visibility = "hidden";
+  const p = document.querySelector("#bottom-note");
+  p.style.visibility = "hidden";
 
   setTimeout(() => {
     button.style.visibility = "visible";
-    header.style.visibility = "visible";
+    p.style.visibility = "visible";
   }, 3000);
 }
 
