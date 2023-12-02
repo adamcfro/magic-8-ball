@@ -25,7 +25,7 @@ button {
   border: none;
   border-radius: 7px;
   font-size: 20px;
-  color: white;
+  color: var(--white);
   background-color: var(--red);
 }
 
@@ -67,7 +67,6 @@ button {
   justify-content: center;
   align-items: center;
   border-radius: 75px;
-  background-color: var(--white);
   height: 150px;
   width: 150px;
   font-size: 100px;
@@ -88,30 +87,71 @@ button {
   font-size: 24px;
 }
 
-.begin-animation {
-  animation: mymove 1s 1;
+.begin-rotate {
+  animation: rotate-to-bottom 1s 1;
   animation-timing-function: linear;
   position: relative;
 }
 
-@keyframes mymove {
+@keyframes rotate-to-bottom {
   from {right: 0;}
   to {right: 2em;}
   from {top: 0;}
   to {top: 2em;}
 }
 
-.end-animation {
-  animation: mymove2 1s 1;
+.end-rotate {
+  animation: rotate-to-center 1s 1;
   animation-timing-function: linear;
   position: relative
 }
 
-@keyframes mymove2 {
+@keyframes rotate-to-center {
   from {left: 2em;}
   to {left: 0;}
   from {bottom: 2em;}
   to {bottom: 0;}
+}
+
+.fade {
+  animation: fade 4s;
+}
+
+@keyframes fade {
+  0% {opacity: 1;}
+  25% {opacity: 0;}
+  50% {opacity: .2;}
+  75% {opacity: .5;}
+  100% {opacity: 1;}
+}
+
+.shake-ball {
+  animation: 1s 1 shake;
+  position: relative;
+}
+
+@keyframes shake {
+  0% {left: 0px;}
+  5% {left: 25px;}
+  10% {left: -25px;}
+  15% {left: 15px;}
+  20% {left: -15px;}
+  25% {left: 10px;}
+  30% {left: -10px;}
+  35% {left: 5px;}
+  40% {left: -5px;}
+  45% {left: 5px;}
+  50% {left: -5px;}
+  55% {left: 5px;}
+  60% {left: -5px;}
+  65% {left: 5px;}
+  70% {left: -5px;}
+  75% {left: 5px;}
+  80% {left: -4px;}
+  85% {left: 3px;}
+  90% {left: -2px;}
+  95% {left: 1px;}
+  100% {left: 0ch;}
 }
   
 .blinker {
@@ -128,7 +168,15 @@ button {
   }
 }
 
-.center-answer {
+.solid {
+  background-color: var(--white);
+}
+
+.liquid {
+  background-color: var(--blue);
+}
+
+.response {
   font-size: 12px;
 }
 
