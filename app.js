@@ -4,19 +4,26 @@
  * @format
  */
 function firstShake() {
-  document.querySelector("#ball").removeEventListener("dragend", firstShake);
-  document.querySelector("#button").removeEventListener("click", firstShake);
+  document.querySelector(".ball").removeEventListener("dragend", firstShake);
+  document.querySelector(".button").removeEventListener("click", firstShake);
 
+  toggleButton();
   shakeBall();
   rotateBall();
-  runProgram();
+  setTimeout(() => {
+    fade();
+  }, 600);
+  setTimeout(() => {
+    displayResponse();
+    toggleListeners();
+  }, 1000);
 }
 
 /**
  * Animation that shakes the ball side-to-side.
  */
 function shakeBall() {
-  const outer = document.querySelector("#outer");
+  const outer = document.querySelector(".outer");
   outer.classList.add("shake-ball");
 
   setTimeout(() => {
@@ -28,6 +35,7 @@ function shakeBall() {
  * Displays the content from Magic 8 Ball's sophisticated response algorithm.
  */
 function rotateBall() {
+  const inner = document.querySelector(".inner");
   inner.classList.add("begin-rotate");
 
   setTimeout(() => {
@@ -43,21 +51,6 @@ function rotateBall() {
 }
 
 /**
- * Toggles the displayButton class to change the UI for the button.
- */
-function displayButton() {
-  const button = document.querySelector("#button");
-  button.style.visibility = "hidden";
-  const p = document.querySelector("#bottom-note");
-  p.style.visibility = "hidden";
-
-  setTimeout(() => {
-    button.style.visibility = "visible";
-    p.style.visibility = "visible";
-  }, 3000);
-}
-
-/**
  * Fades the response out and in.
  */
 function fade() {
@@ -69,11 +62,26 @@ function fade() {
 }
 
 /**
+ * Toggles the button between hidden and visible.
+ */
+function toggleButton() {
+  const button = document.querySelector(".button");
+  button.style.visibility = "hidden";
+  const p = document.querySelector(".bottom-note");
+  p.style.visibility = "hidden";
+
+  setTimeout(() => {
+    button.style.visibility = "visible";
+    p.style.visibility = "visible";
+  }, 3000);
+}
+
+/**
  * Toggles event listeners to prevent premature ball activation.
  */
 function toggleListeners() {
-  const ball = document.querySelector("#ball");
-  const button = document.querySelector("#button");
+  const ball = document.querySelector(".ball");
+  const button = document.querySelector(".button");
   ball.removeEventListener("dragend", runProgram);
   button.removeEventListener("click", runProgram);
 
@@ -123,7 +131,7 @@ function displayResponse() {
  * Displays the result of user's query in the UI.
  */
 function runProgram() {
-  displayButton();
+  toggleButton();
   shakeBall();
   fade();
 
@@ -137,8 +145,8 @@ function runProgram() {
  * Starts the app and adds event listeners.
  */
 function startApp() {
-  document.querySelector("#ball").addEventListener("dragend", firstShake);
-  document.querySelector("#button").addEventListener("click", firstShake);
+  document.querySelector(".ball").addEventListener("dragend", firstShake);
+  document.querySelector(".button").addEventListener("click", firstShake);
 }
 
 startApp();
